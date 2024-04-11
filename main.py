@@ -220,5 +220,31 @@ class mtx2crs(program.program):
         mtx = mtx2crs_handler.mtx2crs_handler(args.matrix, args.out)
         mtx.run()
 
+@program.register_program
+class mtx2tjds(program.program):
+    def __init__(self, args=None):
+        argslist = [
+			('--matrix', {
+					'dest':		'matrix',
+					'default':	None,
+					'action':	'store',
+					'type':		str
+				}),
+			('--out', {
+					'dest':		'out',
+					'default':	None,
+					'action':	'store',
+					'type':		str
+				})
+			]
+        super().__init__(argslist, args, desc="convert an mtx file into tjds form")
+
+    def run(self):
+        args = self.arguments
+        import mtx2tjds_handler
+        mtx = mtx2tjds_handler.mtx2crs_handler(args.matrix, args.out)
+        mtx.run()
+
+
 if __name__ == "__main__":
 	print('[E] run adsp instead', file=stderr)
